@@ -1490,9 +1490,16 @@ void
 glutCloseFunc(handler=0, ...)
 	SV *	handler
 	CODE:
-        {
-	    if (_done_glutCloseFunc_warn == 0) {
-	        warn("glutCloseFunc: not implemented\n");
-	        _done_glutCloseFunc_warn++;
-            }
-        }
+	{
+#ifdef HAVE_AGL_GLUT
+		decl_gwh_xs(WMClose)
+#elif defined HAVE_FREEGLUT
+		decl_gwh_xs(Close)
+#else
+		if (_done_glutCloseFunc_warn == 0) 
+		{
+			warn("glutCloseFunc: not implemented\n");
+			_done_glutCloseFunc_warn++;
+		}
+#endif
+	}

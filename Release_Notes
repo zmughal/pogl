@@ -66,6 +66,8 @@ Highlights:
 
   * Fixed sf.net #20 "Prefer system GL/#gl.h on non-Win32"
 
+  * Fixed glutCloseFunc for Mac OS X.
+
 
 
 +------------------------------------------------------------------------+
